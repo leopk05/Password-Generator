@@ -14,9 +14,9 @@
 <body>
 
     <div class="container-fluid text-center main-page">
-        <div class="display">
-            <input type="text" placeholder="Password" id="myInput">
-            <button onclick="myFunction()">Copy</button>
+        <div class="display pt-site-footer__submit">
+            <input type="text" placeholder="Password" id="myInput" disabled>
+            <button class="btn btn-lg btn-dark inside-button" onclick="copyFunction()">Copy</button>
         </div>
 
 
@@ -98,7 +98,7 @@
 
 
 
-    <button type="button" class="btn btn-lg btn-dark" >Generate</button>
+    <button type="button" class="btn btn-lg btn-dark last-button" onclick="buttonClicked()" >Generate</button>
 
 
 

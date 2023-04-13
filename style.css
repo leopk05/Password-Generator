@@ -24,6 +24,10 @@ body{
     justify-content: center;
 }
 
+.last-button{
+    margin-bottom: 10px;
+}
+
 #length{
     margin: 0;
 }
@@ -170,44 +174,34 @@ input:checked + .slider:before {
 
 /*---------input/copy style------------*/
 
-.tooltip {
-    position: relative;
+.pt-site-footer__submit{
     display: inline-block;
+    position: relative;
+    overflow: hidden;
 }
 
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 140px;
-    background-color: #555;
-    color: #fff;
+.inside-button {
+    position: absolute;
+    border: 0;
+    border-radius: 7px;
+    padding: 10px;
+    cursor:pointer;
+    right: 5px;
+    top: 44%;
+    transform: translate(0, -50%);
+}
+
+#myInput{
+    width: 380px;
+    background-color: grey;
+    border-radius: 10px;
     text-align: center;
-    border-radius: 6px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 150%;
-    left: 50%;
-    margin-left: -75px;
-    opacity: 0;
-    transition: opacity 0.3s;
+    border: 0;
+    color: white;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    min-width: 320px;
 }
-
-.tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
-
 
 
 
