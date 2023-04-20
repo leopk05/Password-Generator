@@ -1,6 +1,7 @@
 /*-------------all area------------*/
 
 body{
+    font-family: 'Lora', serif;
     background-color: #000;
     color: #16FF00;
     font-size: 1.5rem;
@@ -173,6 +174,10 @@ input:checked + .slider:before {
 }
 
 /*---------input/copy style------------*/
+
+.adjust{
+    padding-right: 60px;
+}
 
 .pt-site-footer__submit{
     display: inline-block;

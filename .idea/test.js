@@ -26,6 +26,10 @@ const genPass = (lengthLocal) => {
 };
 
 
+let teste10 = "testando";
+
+console.log(teste10.includes("d"));
+
 
 
 

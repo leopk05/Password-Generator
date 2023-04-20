@@ -5,7 +5,7 @@ const inputResult = document.getElementById("myInput")
 const copyText = document.getElementById("myInput");
 const copyButton = document.getElementById("copyButton");
 
-var length = 10;
+let length = 10;
 
 slider.oninput = function() {
     output.innerHTML = this.value;
@@ -56,61 +56,64 @@ const getRandomElement = arr => {
 const genPass = (lengthLocal) => {
     const upperCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
     const lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-    const special = ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '-', '=', '{', '}', '[', ']', ':', ';', '?', ', ', '.', '|', '\\'];
+    const special = ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '-', '=', '{', '}', '[', ']', ':', ';', '?', ',', '.', '|', '\\'];
     const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    let password = ""
 
     const nonSpecial = [...upperCase, ...lowerCase, ...numbers];
-    let password = '';
 
 
-
-
-
-    for (let i = 0; i < lengthLocal; i++) {
-        password += getRandomElement([...lowerCase, ...numbers]);
-    }
     if (numberState[0] === 0 && specialState[0] === 0 && upperState[0] === 0) {
-        //add dentro de cada if se tem o norepeat state on ou of, e ai dividir o codigo nesse if ou else
-        // Caso 1: Nenhum campo ativado
-        // code here
+        password = finalPass(noRepeatState, lowerCase, lengthLocal);
     }
+
+
+
+
 
     if (numberState[0] === 1 && specialState[0] === 0 && upperState[0] === 0) {
-        // Caso 2: Somente numberState ativado
-        // code here
+        password = finalPass(noRepeatState, [...numbers,...lowerCase], lengthLocal);
     }
+
+
 
     if (numberState[0] === 0 && specialState[0] === 1 && upperState[0] === 0) {
-        // Caso 3: Somente specialState ativado
-        // code here
+        password = finalPass(noRepeatState, [...special,...lowerCase], lengthLocal);
     }
+
+
 
     if (numberState[0] === 0 && specialState[0] === 0 && upperState[0] === 1) {
-        // Caso 4: Somente upperState ativado
-        // code here
+        password = finalPass(noRepeatState, [...upperCase,...lowerCase], lengthLocal);
     }
+
+
 
     if (numberState[0] === 1 && specialState[0] === 1 && upperState[0] === 0) {
-        // Caso 5: numberState e specialState ativados
-        // code here
+        password = finalPass(noRepeatState, [...special, ...numbers, ...lowerCase], lengthLocal);
     }
+
+
+
+
 
     if (numberState[0] === 1 && specialState[0] === 0 && upperState[0] === 1) {
-        // Caso 6: numberState e upperState ativados
-        // code here
+        password = finalPass(noRepeatState, [...numbers, ...upperCase, ...lowerCase], lengthLocal);
     }
+
+
+
 
     if (numberState[0] === 0 && specialState[0] === 1 && upperState[0] === 1) {
-        // Caso 7: specialState e upperState ativados
-        // code here
+        password = finalPass(noRepeatState, [...special, ...upperCase, ...lowerCase], lengthLocal);
     }
+
+
+
 
     if (numberState[0] === 1 && specialState[0] === 1 && upperState[0] === 1) {
-        // Caso 8: Todos os campos ativados
-        // code here
+        password = finalPass(noRepeatState, [...numbers, ...special, ...upperCase, ...lowerCase], lengthLocal);
     }
-
-
 
 
 
@@ -124,9 +127,46 @@ const genPass = (lengthLocal) => {
 
 
     return password;
+
 };
 
-function buttonClicked() {
-    copyButton.textContent = "Copy"
-    inputResult.value = genPass(length);
+
+
+function finalPass(repeatState, arrayToUse, lengthLocal){
+    let password = ""
+    if (repeatState[0] === 1){
+        while (password.length < lengthLocal){
+            let current = getRandomElement(arrayToUse)
+            if (!password.includes(current)) {
+                password += current
+            }
+        }
+    } else {
+        while (password.length < lengthLocal){
+            let current = getRandomElement(arrayToUse)
+            password += current;
+        }
+
+    }
+    return password;
 }
+
+
+
+
+
+
+
+
+
+function buttonClicked() {
+    copyButton.textContent = "Copy" //need to add copy button different here..
+    inputResult.value = genPass(length);
+    if (length >= 16){
+        inputResult.classList.add("adjust")
+    } else {
+        inputResult.classList.remove("adjust")
+    }
+}
+
+
